@@ -1,0 +1,36 @@
+form.form-horizontal(ng-submit='apc.submit()')
+  fieldset
+    // Form Name
+    legend Add a Person to the Lending Library
+    // Text input
+    .form-group
+      label.col-md-4.control-label(for='firstname') First Name
+      .col-md-8
+        input#firstname.form-control.input-md(name='firstname', ng-model='apc.person.firstname', type='text', placeholder='', required='')
+        |   
+        span.help-block Required
+    // Text input
+    .form-group
+      label.col-md-4.control-label(for='lastname') Last Name
+      .col-md-8
+        input#lastname.form-control(name='lastname', ng-model='apc.person.lastname', type='text', placeholder='', required='')
+        |   
+        span.help-block Required
+    // Text input
+    .form-group
+      label.col-md-4.control-label(for='email') Email
+      .col-md-8
+        input#email.form-control.input-md(name='email', ng-model='apc.person.email', type='text', placeholder='')
+    // Text input
+    .form-group
+      label.col-md-4.control-label(for='phone') Phone
+      .col-md-8
+        input#phone.form-control.input-md.input-phone(name='phone', ng-model='apc.person.phone', type='text', phone-input)
+
+    .form-group
+      label.col-md-4.control-label(for='button1id')
+      .col-md-8
+        .pull-right
+          input.btn.btn-success( type='submit' value='Add User')
+          |  
+          button.btn.btn-danger( ng-click='closeThisDialog()') Cancel

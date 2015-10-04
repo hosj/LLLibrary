@@ -1,0 +1,43 @@
+
+.row
+  .col-sm-2
+    img(src='http://placehold.it/200x300', ng-src='{{bc.book.cover.thumbnail}}', width='100%',height='100%')
+  .col-sm-10.border-bottom
+    h1 {{bc.book.title}}
+    div
+      .row
+        .book-authors.col-sm-4
+          div(ng-repeat='author in bc.book.authors') {{author.name}}
+        .book-date.pull-left {{bc.book.published}}
+        .row
+        br
+        .book-publisher.col-sm-4 {{bc.book.publisher}}
+        | This book has been borrowed {{bc.book.lent}} times
+      .row
+        .pull-right.col-sm-2.padding-bottom
+          button.btn(ng-click='bc.changeStatus()', ng-class="bc.book.status == 'Available'?'btn-success':'btn-danger'") {{bc.book.status}}
+.row
+  .col-lg-12 {{bc.book.description}}
+.row.border-top
+  .col-lg-6.border-right
+    h2 
+      button.btn.btn-primary.btn-sm.pull-right(ng-click='bc.showNotes()') Add Note
+      | Notes
+    blockquote(ng-repeat='note in bc.book.notes')
+      p(style="white-space: pre-wrap;") {{note.text}}
+      p
+        small {{note.date | amCalendar}}
+
+  .col-lg-6
+    h3 Check Out History
+    table.table.table-striped
+      tr
+        th Person
+        th Checked Out
+        th Returned
+      tr(ng-repeat='co in bc.book.checkedOut')
+        td {{co.who.fullname}}
+        td {{co.when | amCalendar}}
+        td {{co.returned | amCalendar}}
+    
+    

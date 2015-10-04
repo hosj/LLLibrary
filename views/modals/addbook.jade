@@ -1,0 +1,78 @@
+form.form-horizontal(ng-submit='abc.submit()')
+  fieldset
+    legend Add a Book to the Lending Library
+    // ISBN
+    .form-group
+      label.col-md-4.control-label ISBN
+      .col-md-8
+        .input-group
+          input.form-control.input-md(ng-model='abc.book.isbn', type='text', placeholder='ISBN Number')
+          span.input-group-btn
+            button.btn.btn-default(type='button', ng-click='abc.isbnlookup()') Find  
+    // Cover
+    div(flow-init='{singleFile:true}', flow-file-added='!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]', flow-name='abc.flow', ng-show="abc.manual")
+      .col-md-4
+        span.btn.btn-primary.pull-right(ng-show='!abc.flow.files.length', flow-btn='')
+          | Add
+          input(type='file', style='visibility: hidden; position: absolute;')
+        span.btn.btn-info.pull-right.ng-hide(ng-show='abc.flow.files.length', flow-btn='')
+          | Change
+          input(type='file', style='visibility: hidden; position: absolute;')
+        |  
+        span.btn.btn-danger.pull-right.ng-hide(ng-show='abc.flow.files.length', ng-click='abc.flow.cancel()')
+          | Remove
+      .col-md-8
+        .thumbnail(ng-show='!abc.flow.files.length')
+          img(src='http://www.placehold.it/128x184/EFEFEF/AAAAAA&text=no+image')
+        .thumbnail.ng-hide(ng-show='abc.flow.files.length')
+          img(flow-img='abc.flow.files[0]')
+      p
+        | Only PNG,GIF,JPG,JPEG files allowed.
+        div(ng-repeat="file in abc.flow.files") {{file.name}}
+    // Cover from isbn
+    .form-group(ng-hide="abc.manual")
+      label.col-md-4.control-label Cover
+      .col-md-8
+        img(ng-src="{{abc.book.cover.thumbnail}}")
+    // Title
+    .form-group
+      label.col-md-4.control-label(for='title') Title
+      .col-md-8
+        input#title.form-control(name='title', ng-model='abc.book.title', type='text', placeholder='')
+        
+
+    // Author
+    .form-group
+      label.col-md-4.control-label.show-first(for='author') Authors
+      .col-md-8
+        input.form-control(ng-model='author.name', type='text', placeholder='', ng-repeat="author in abc.book.authors")
+      .col-md-12
+        .btn.btn-default.pull-right(ng-click="abc.addAuthor()") Add
+        
+    // Publisher
+    .form-group
+      label.col-md-4.control-label(for='publisher') Publisher
+      .col-md-8
+        input#publisher.form-control(name='publisher', ng-model='abc.book.publisher', type='text', placeholder='')
+        
+    // Publish Date
+    .form-group
+      label.col-md-4.control-label(for='published') Published
+      .col-md-8
+        input#published.form-control(name='published', ng-model='abc.book.published', type='text', placeholder='Year book was published')
+        
+    // Format
+    .form-group
+      label.col-md-4.control-label(for='format') Format
+      .col-md-8
+        input#format.form-control(name='format', ng-model='abc.book.format', type='text', placeholder='Hardback, Softback, Unbound')
+    
+
+    .form-group
+      .col-md-4
+        img(ng-src="{{abc.book.cover.small}}")
+      .col-md-8
+        .pull-right
+          input.btn.btn-success( type='submit' value='Add Book')
+          |  
+          button.btn.btn-danger( ng-click='closeThisDialog()') Cancel

@@ -1,0 +1,21 @@
+button.btn.btn-primary.pull-right(ng-click="pc.addPerson()") Add
+h2 People in your lending library
+
+table.table.table-striped
+  tr
+    th
+      | First Name
+    th
+      | Last Name
+    th
+      | Phone
+    th
+      | Email
+    th
+      | Books
+  tr(ng-repeat="person in pc.people track by $index")
+    td {{person.firstname}}
+    td {{person.lastname}}
+    td {{person.phone | tel}}
+    td {{person.email}}
+    td {{person.bookcount}}

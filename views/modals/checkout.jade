@@ -1,0 +1,17 @@
+form.form-horizontal(ng-submit='cobc.submit()')
+  fieldset
+    // Form Name
+    legend Assign a Book to a Person
+    // Text input
+    .form-group
+      label.col-md-4.control-label(for='person') Person
+      .col-md-8
+        select.form-control(ng-options='person.fullname for person in cobc.people', ng-model='cobc.selected')
+
+    .form-group
+      label.col-md-4.control-label(for='button1id')
+      .col-md-8
+        .pull-right
+          input.btn.btn-success( type='submit' value='Assign')
+          |  
+          button.btn.btn-danger( ng-click='closeThisDialog()') Cancel

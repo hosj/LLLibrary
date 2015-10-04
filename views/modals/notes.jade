@@ -1,0 +1,22 @@
+
+form.form-horizontal(ng-submit='snc.submit()')
+  fieldset
+    // Form Name
+    legend Notes for {{snc.book.title}}
+    // Text input
+    dir-pagination-controls
+    .col-g-12(dir-paginate="note in snc.book.notes | itemsPerPage: 1")
+      blockquote
+        p(style="white-space: pre-wrap;") {{note.text}}
+        p
+          small {{note.date | date}}
+    h4 Add a Note
+    textarea.col-g-12.form-control(ng-model='snc.notes')
+
+    .form-group
+      label.col-md-4.control-label(for='button1id')
+      .col-md-8
+        .pull-right
+          input.btn.btn-success( type='submit' value='Add Note')
+          |  
+          button.btn.btn-danger( ng-click='closeThisDialog()') Close

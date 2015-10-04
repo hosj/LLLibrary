@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .container
+      .content.col-lg-12
+        if (!user)
+          //| Please log in
+          div(ng-view)
+        if (user)
+          div(ng-view)
+        .clearfix

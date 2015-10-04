@@ -1,0 +1,17 @@
+form.form-horizontal(ng-submit='cibc.submit()')
+  fieldset
+    // Form Name
+    legend Return a Book to the Lending Library
+    // Text input
+    .form-group
+      label.col-md-2.control-label(for='person') Notes
+      .col-md-10
+        textarea.form-control(ng-model='cibc.notes')
+
+    .form-group
+      label.col-md-4.control-label(for='button1id')
+      .col-md-8
+        .pull-right
+          input.btn.btn-success( type='submit' value='Check In')
+          |  
+          button.btn.btn-danger( ng-click='closeThisDialog()') Cancel

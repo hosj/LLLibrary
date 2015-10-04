@@ -1,0 +1,35 @@
+.col-lg-3.col-sm-6
+  .well
+    h2 {{mc.totalBooks}}
+    span Books
+    
+.col-lg-3.col-sm-6
+  .well
+    h2 {{mc.totalPeople}}
+    span People
+    
+.col-lg-3.col-sm-6
+  .well
+    h2 {{mc.totalBooksLoaned}}
+    span Books on Loan
+    
+.col-lg-3.col-sm-6
+  .well
+    h2 {{mc.totalPeopleBooks}}
+    span People with Books
+    
+.col-lg-12.col-sm-12
+  h2 Who has my books
+  table.table.table-striped
+    tr
+      th Person
+      th Book
+      th Date Borrowed
+    tr(ng-repeat='book in mc.borrowedBooks')
+      td {{book.checkedOut[book.checkedOut.length-1].who.fullname}}
+      td {{book.title}}
+      td {{book.checkedOut[book.checkedOut.length-1].when | amCalendar}}
+    tr(ng-hide='mc.borrowedBooks.length > 0')
+      td(colspan='3')
+        .alert.alert-info
+          | There are no books checked out

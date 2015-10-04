@@ -1,0 +1,14 @@
+button.btn.btn-primary.pull-right(ng-click="bc.addBook()") Add
+h2 Books in your lending library
+.empty(ng-hide='bc.books.length > 0')
+  | There are no books in your lending library
+.col-md-4(ng-repeat="book in bc.books")
+  .card.card--small
+    div.card__image(style='background-image: url({{book.cover.thumbnail}})')
+    h2.card__title(title='{{book.title}}') {{book.title}}
+    span.card__subtitle
+      div(ng-repeat="author in book.authors") {{author.name}}
+    p.card__text Located two hours south of Sydney in the Southern Highland of New South Wales...
+    div.card__action-bar
+      button.btn(ng-click='bc.changeStatus(book)', ng-class="book.status == 'Available'?'btn-success':'btn-danger'") {{book.status}}
+      a.card__button(href='#/book/{{book._id}}') Show Details
